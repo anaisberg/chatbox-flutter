@@ -106,6 +106,13 @@ class ChatScreenState extends State<ChatScreen>{
             ),
             child: _textComposer(),
           ),
+          // new RaisedButton(
+          //   onPressed: () {
+          //     // Navigate back to the first screen by popping the current route
+          //     // off the stack.
+          //      Navigator.pop(context);
+          //   }
+          // ),
         ],
       ); 
   }
