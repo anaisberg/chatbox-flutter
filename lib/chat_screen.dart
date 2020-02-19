@@ -29,7 +29,7 @@ class ChatScreenState extends State<ChatScreen>{
 
   Widget _textComposer() {
     return new IconTheme(
-      data: new IconThemeData(color: Colors.green[400]),
+      data: new IconThemeData(color: Colors.pink[400]),
       child: new Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: new Row(

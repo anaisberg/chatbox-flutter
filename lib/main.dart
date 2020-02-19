@@ -9,8 +9,8 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'whatsApp',
       theme: ThemeData(
-        primaryColor: Colors.green[400],
-        accentColor: Colors.green[100]
+        primaryColor: Colors.pink[300],
+        accentColor: Colors.pink[100]
       ),
       home: new WhatsAppHome(),
     );
