@@ -13,7 +13,7 @@ class _WhatsAppHomeState extends State<WhatsAppHome> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(
-          'msi chatbox',
+          'Chatbox - MSI',
           style: TextStyle(fontFamily: 'Raleway'),
         ),
         elevation: 0.7,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:whatsapp/chat_screen.dart';
-import 'package:whatsapp/whatsapp_home.dart';
 
-const String _nameGet = "Ana";
-const String _nameSend = "Theo";
+const String _nameGet = "Elève";
+const String _nameSend = "Anaïs";
 
 class ChatMessage extends StatelessWidget{
     
@@ -25,9 +23,9 @@ class ChatMessage extends StatelessWidget{
           new Container(
             margin: const EdgeInsets.only(right: 16.0),
             child: new CircleAvatar(
-              backgroundColor: Colors.pink[100],
+              backgroundColor: our ? Colors.grey[300] : Colors.pink[100],
               child: new Text(
-                our ? _nameGet[0] : _nameSend[0],
+                our ? _nameSend[0] : _nameGet[0],
                 style: TextStyle(
                   color: Colors.black45
                 ),
@@ -37,7 +35,7 @@ class ChatMessage extends StatelessWidget{
           new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Text(our ? _nameGet : _nameSend, style: Theme.of(context).textTheme.subhead,),
+              new Text(our ? "Vous" : _nameGet, style: Theme.of(context).textTheme.subhead,),
               new Container(
                 margin: const EdgeInsets.only(top: 5.0),
                 child: new Text(text),

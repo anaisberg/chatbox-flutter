@@ -28,12 +28,6 @@ class ChatScreenState extends State<ChatScreen>{
     });
   }
 
-  int getLastSelfId() {
-    return lastSelfId;
-  }
-  // final timeout = const Duration(seconds: 3);
-  // final ms = const Duration(milliseconds: 1);
-
   Timer startTimeout([int milliseconds]) {
     var duration = Duration(milliseconds: milliseconds);
     return new Timer.periodic(duration, callback);
