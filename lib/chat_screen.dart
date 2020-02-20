@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:whatsapp/http_message.dart';
@@ -14,42 +16,34 @@ class ChatScreenState extends State<ChatScreen>{
   final TextEditingController _textController = new TextEditingController();
   final List<ChatMessage> _messages = <ChatMessage> [];
   Future<HttpMessage> futureMessage;
-
+  var lastId = 0;
   
-
   void _handleSubmitted(String text) async {
     //clears the text field once message send
-    
     _textController.clear();
-    print('Waiting for fetchHttpMessage...');
     var idEnvoye = await fetchHttpMessage(text);
-    print('fetchHttpMessage received!');
 
-    // var result = await getHttpMessage();
-    // print(result);
-    // setState(() {
-    //   print('dans setstate');
-    //   _messages.insert(0,new ChatMessage(text: result.content));
-    // });
-    // print('juste après');
-
-    // getHttpMessage().then((result) {
-    //   print(result);
-    //   setState(() {
-    //     _messages.insert(0,new ChatMessage(text: result.content));
-    //   });
-    // });
-    // print('juste après le then');
-    //list updated with the message
-
-    // ChatMessage message = new ChatMessage(
-    //   text: "local: "+text,
-    // );
-
-    // setState((){
-    //   _messages.insert(0,message);
-    // });
   }
+
+  // final timeout = const Duration(seconds: 3);
+  // final ms = const Duration(milliseconds: 1);
+
+  Timer startTimeout([int milliseconds]) {
+    var duration = Duration(milliseconds: milliseconds);
+    return new Timer.periodic(duration, callback);
+  }
+  void callback(Timer t) async {  // callback function
+    var result = await getHttpMessage();
+    setState(() {
+      if (result.id != lastId) {
+        print('New message received from server!');
+        print(result.content);
+        _messages.insert(0,new ChatMessage(text: result.content));
+        lastId = result.id;
+      }
+    });
+  }
+
 
   Widget _textComposer() {
     return new IconTheme(
@@ -90,6 +84,7 @@ class ChatScreenState extends State<ChatScreen>{
 
   @override 
   Widget build(BuildContext context) {
+    startTimeout(1000);
     return new Column(
         children: <Widget>[
           new Flexible(

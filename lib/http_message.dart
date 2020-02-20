@@ -1,17 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 
 Future<int> fetchHttpMessage(messageEnvoye) async {
-  print('Sending message to server...');
   var response =
       await http.get('http://192.168.153.25:5000/test/post/'+messageEnvoye);
   print('Message sent to server!');
   if (response.statusCode == 200) {
-    print(json.decode(response.body));
     // If the server did return a 200 OK response, then parse the JSON.
     return json.decode(response.body);
   } else {
@@ -21,15 +18,12 @@ Future<int> fetchHttpMessage(messageEnvoye) async {
 }
 
 Future<HttpMessage> getHttpMessage() async {
-  print('on fait un pull');
   final response =
-      await http.get('http://192.168.152.25:5000/test/pull');
-  print('pull done');
+      await http.get('http://192.168.153.25:5000/test/pull');
   if (response.statusCode == 200) {
-    print('ici');
-    return HttpMessage.fromJson(json.decode(response.body));
+    var messageList = json.decode(response.body);
+    return HttpMessage.fromJson(messageList[messageList.length-1]);
   } else {
-    print('là');
     throw Exception('Failed to get message');
   }
 }
