@@ -29,7 +29,7 @@ class ChatScreenState extends State<ChatScreen>{
 
   Widget _textComposer() {
     return new IconTheme(
-      data: new IconThemeData(color: Colors.green[400]),
+      data: new IconThemeData(color: Colors.pink[400]),
       child: new Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: new Row(
@@ -87,6 +87,13 @@ class ChatScreenState extends State<ChatScreen>{
             ),
             child: _textComposer(),
           ),
+          // new RaisedButton(
+          //   onPressed: () {
+          //     // Navigate back to the first screen by popping the current route
+          //     // off the stack.
+          //      Navigator.pop(context);
+          //   }
+          // ),
         ],
       ); 
   }
