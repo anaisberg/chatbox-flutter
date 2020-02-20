@@ -28,17 +28,28 @@ class MyWelcomeApp extends StatelessWidget {
         accentColor: Colors.pink[100]
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('First Screen'),
-        ),
-        body: Center(
-          child: RaisedButton(
-            child: Text('start chatting'),
-            onPressed: () {
-              // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/second');
-            },
-          ),
+        // appBar: AppBar(
+        //   title: Text('First Screen'),
+        // ),
+        body: Stack(
+          children: <Widget>[
+            Image.asset(
+              'images/clouds.png',
+              fit: BoxFit.fitHeight ,
+              height: 2220,
+              repeat: ImageRepeat.repeat,
+            ),
+
+            Center(
+              child: RaisedButton(
+                child: Text('start chatting'),
+                onPressed: () {
+                  // Navigate to the second screen using a named route.
+                  Navigator.pushNamed(context, '/second');
+                },
+              ),
+            )
+          ]
         ),
       ),
       
