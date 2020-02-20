@@ -17,14 +17,20 @@ class ChatScreenState extends State<ChatScreen>{
   final List<ChatMessage> _messages = <ChatMessage> [];
   Future<HttpMessage> futureMessage;
   var lastId = 0;
+  var lastSelfId = 0;
   
   void _handleSubmitted(String text) async {
     //clears the text field once message send
     _textController.clear();
     var idEnvoye = await fetchHttpMessage(text);
-
+    setState(() {
+      lastSelfId = idEnvoye;
+    });
   }
 
+  int getLastSelfId() {
+    return lastSelfId;
+  }
   // final timeout = const Duration(seconds: 3);
   // final ms = const Duration(milliseconds: 1);
 
@@ -38,7 +44,8 @@ class ChatScreenState extends State<ChatScreen>{
       if (result.id != lastId) {
         print('New message received from server!');
         print(result.content);
-        _messages.insert(0,new ChatMessage(text: result.content));
+        var our = result.id == lastSelfId;
+        _messages.insert(0,new ChatMessage(text: result.content, id:result.id, our: our));
         lastId = result.id;
       }
     });
@@ -85,7 +92,7 @@ class ChatScreenState extends State<ChatScreen>{
 
   @override 
   Widget build(BuildContext context) {
-    startTimeout(1000);
+    startTimeout(3000);
     return new Column(
         children: <Widget>[
           new Flexible(
