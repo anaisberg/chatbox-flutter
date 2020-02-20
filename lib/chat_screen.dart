@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:whatsapp/http_message.dart';
 import 'package:whatsapp/chat_message.dart';
 
 class ChatScreen extends StatefulWidget{
@@ -12,19 +13,42 @@ class ChatScreenState extends State<ChatScreen>{
   // _privateField
   final TextEditingController _textController = new TextEditingController();
   final List<ChatMessage> _messages = <ChatMessage> [];
+  Future<HttpMessage> futureMessage;
 
+  
 
-
-  void _handleSubmitted(String text){
+  void _handleSubmitted(String text) async {
     //clears the text field once message send
+    
     _textController.clear();
+    print('Waiting for fetchHttpMessage...');
+    var idEnvoye = await fetchHttpMessage(text);
+    print('fetchHttpMessage received!');
+
+    // var result = await getHttpMessage();
+    // print(result);
+    // setState(() {
+    //   print('dans setstate');
+    //   _messages.insert(0,new ChatMessage(text: result.content));
+    // });
+    // print('juste après');
+
+    // getHttpMessage().then((result) {
+    //   print(result);
+    //   setState(() {
+    //     _messages.insert(0,new ChatMessage(text: result.content));
+    //   });
+    // });
+    // print('juste après le then');
     //list updated with the message
-    ChatMessage message = new ChatMessage(
-      text: text,
-    );
-    setState((){
-      _messages.insert(0,message);
-    });
+
+    // ChatMessage message = new ChatMessage(
+    //   text: "local: "+text,
+    // );
+
+    // setState((){
+    //   _messages.insert(0,message);
+    // });
   }
 
   Widget _textComposer() {
@@ -38,7 +62,7 @@ class ChatScreenState extends State<ChatScreen>{
               child: new TextField(
                 decoration: new InputDecoration.collapsed(
                   //occupies all the space
-                  hintText: "message", //light display
+                  hintText: "Aa", //light display
                   //submit the text when written
                 ),
                 onSubmitted: _handleSubmitted,

@@ -12,8 +12,8 @@ class _WhatsAppHomeState extends State<WhatsAppHome> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('msi chatbox'),
-        elevation: 0.7,
+        title: new Text('MSI - Chatbox'),
+        elevation: 1,
       ),
       body: new ChatScreen(),
       // new ChatScreen(),
