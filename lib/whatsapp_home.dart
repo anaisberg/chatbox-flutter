@@ -19,7 +19,6 @@ class _WhatsAppHomeState extends State<WhatsAppHome> {
         elevation: 0.7,
         centerTitle: true,
         
-
       ),
       body: new ChatScreen(),
       // new ChatScreen(),
