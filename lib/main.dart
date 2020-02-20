@@ -18,7 +18,11 @@ void main() {
   ));
 }
 
+var _currentOpacity = 1.0; 
+
 class MyWelcomeApp extends StatelessWidget {
+  
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -31,25 +35,39 @@ class MyWelcomeApp extends StatelessWidget {
         // appBar: AppBar(
         //   title: Text('First Screen'),
         // ),
-        body: Stack(
-          children: <Widget>[
-            Image.asset(
-              'images/clouds.png',
-              fit: BoxFit.fitHeight ,
-              height: 2220,
-              repeat: ImageRepeat.repeat,
-            ),
+        body: AnimatedOpacity (
+          opacity: _currentOpacity,
+          duration: const Duration(seconds: 1),
+          child: Stack(
+                    children: <Widget>[
+                      Image.asset(
+                        'images/clouds.png',
+                        fit: BoxFit.fitHeight ,
+                        height: 2220,
+                        repeat: ImageRepeat.repeat,
+                      ),
 
-            Center(
-              child: RaisedButton(
-                child: Text('start chatting'),
-                onPressed: () {
-                  // Navigate to the second screen using a named route.
-                  Navigator.pushNamed(context, '/second');
-                },
-              ),
-            )
-          ]
+              Center(
+                child: RaisedButton(
+                  child: Icon(
+                    Icons.arrow_upward,
+                    size: 70,
+                    color: Colors.purple[100]
+                  ),
+                  
+                  //Text('start chatting'),
+                  shape: new CircleBorder(),
+                  
+                  onPressed: () {
+                    // Navigate to the second screen using a named route.
+                    Navigator.pushNamed(context, '/second');
+                    _currentOpacity = 0.0 ;
+                    
+                  },
+                ),
+              )
+            ]
+          ),
         ),
       ),
       
